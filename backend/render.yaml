@@ -1,0 +1,17 @@
+# render.yaml — Render.com deployment configuration for Nibbli backend
+# Place this file in the backend/ folder when connecting to Render.
+
+services:
+  - type: web
+    name: nibbli-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        fromPort: true
+      - key: FRONTEND_URL
+        sync: false   # Set this manually in the Render dashboard
